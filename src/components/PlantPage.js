@@ -26,6 +26,10 @@ function PlantPage() {
   const handleSearch = (e) => {
     setSearch(e.target.value)
   }
+
+  const deletePlant = (id) => {
+    setPlants(plants.filter(plant => plant.id !== id))
+  }
   
   const filteredPlants = plants.filter(plant => {
     if(plant.name.toLowerCase().includes(search.toLowerCase())){
@@ -35,11 +39,21 @@ function PlantPage() {
     }
   })
 
+  const updatePlantPrice = (updatedPlant) => {
+    setPlants(plants.map(plant => {
+      if(plant.id === updatedPlant.id){
+        return updatedPlant
+      }else{
+        return plant;
+      }
+    }))
+  }
+
   return (
     <main>
       <NewPlantForm addNewPlant={addNewPlant}/>
       <Search search={search} handleSearch={handleSearch}/>
-      <PlantList plants={filteredPlants} />
+      <PlantList plants={filteredPlants} deletePlant={deletePlant} updatePlantPrice={updatePlantPrice}/>
     </main>
   );
 }

@@ -23,7 +23,7 @@ function NewPlantForm({addNewPlant}) {
       body: JSON.stringify({
         name: form.name,
         image: form.image,
-        price: parseInt(form.price)
+        price: form.price
       })
     })
     .then(res => {
