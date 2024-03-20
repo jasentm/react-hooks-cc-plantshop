@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 
 function NewPlantForm({addNewPlant}) {
+  {/*blank form used to clear form and set initial state */}
   const initialForm = {
     name: '',
     image: '',
     price: ''
   }
+
+  {/*state to make component controlled */}
   const [form, setForm] = useState(initialForm)
   
+  {/*function to make component controlled, update state of form based on user input */}
   const handleFormChange = (e) => {
     setForm({
       ...form,
@@ -15,11 +19,13 @@ function NewPlantForm({addNewPlant}) {
     })
   }
 
+  {/*POST request to add new plant that passes new plant obj to passed helper funtion to change
+    state of plants in PlantPage */}
   const handlePlantSubmit = (e) => {
     e.preventDefault()
     fetch('http://localhost:6001/plants', {
       method: 'POST',
-      headers: {'Content-Type': "application/json"},
+      headers: {'Content-Type': "Application/JSON"},
       body: JSON.stringify({
         name: form.name,
         image: form.image,
@@ -35,6 +41,7 @@ function NewPlantForm({addNewPlant}) {
     })
     .then(newPlantData => {
       addNewPlant(newPlantData)
+      {/*clear form on submit */}
       setForm(initialForm)
     })
     .catch(error => console.error(error))

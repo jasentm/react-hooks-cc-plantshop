@@ -1,5 +1,6 @@
 import React from "react";
 
+{/*Search component - controlled via state and updates state with function passed from PlantPage */}
 function Search({search, handleSearch}) {
   return (
     <div className="searchbar">
